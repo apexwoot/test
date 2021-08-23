@@ -9,5 +9,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/material-ui" level="application" />
+    <orderEntry type="library" name="@types/prop-types" level="application" />
+    <orderEntry type="library" name="@types/react" level="application" />
   </component>
 </module>

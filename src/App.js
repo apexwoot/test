@@ -1,23 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import { DataGrid } from '@material-ui/data-grid';
+import { BooksContainer, useBooksIsLoading, useBooksStore, useFinalBooks } from './store/books';
+
+const columns = [
+  {
+    field: 'title',
+    headerName: 'title',
+    flex: 0.25
+  },
+  {
+    field: 'author',
+    headerName: 'author',
+    flex: 0.15
+  },
+  {
+    field: 'publisher',
+    headerName: 'publisher',
+    flex: 0.18
+  },
+  {
+    field: 'language',
+    headerName: 'language',
+    flex: 0.12
+  }
+]
+
 
 function App() {
+  const [isLoading] = useBooksIsLoading();
+  const [books] = useFinalBooks({isLost: false})
+  const [state] = useBooksStore()
+  console.log(state);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: 520, width: '100%' }}>
+      <BooksContainer isGlobal>
+          <DataGrid
+            loading={isLoading}
+            rows={books}
+            columns={columns}
+          />
+      </BooksContainer>
     </div>
   );
 }
